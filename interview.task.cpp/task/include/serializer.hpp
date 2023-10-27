@@ -4,7 +4,7 @@
 
 namespace Task
 {
-    void SerializeToFile(const DataWrapper* data, const char* filePath);
+    void SerializeToFile(const DataWrapper* dataWrapper, const char* filePath);
 
-    void DeserializeFromFile(DataWrapper*& data, const char* filePath);
+    void DeserializeFromFile(DataWrapper*& dataWrapper, const char* filePath);
 } // namespace Task

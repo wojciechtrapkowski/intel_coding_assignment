@@ -2,53 +2,18 @@
 #include "data.hpp"
 #include "serializer.hpp"
 #include "verifier.hpp"
+#include "tests.hpp"
+
 int main(int argc, char** argv)
 {
-    // TODO: 1. Prepare example data for serialization
-    Task::DataWrapper dataWrapper;
-    dataWrapper.numBuffers = 10;
-    dataWrapper.numData = 13;
+    // When doing serialization & deserialization I assumed that data is correctly formatted and didn't do any checks
 
-    dataWrapper.buffers = new Task::Buffer[dataWrapper.numBuffers];
-    for(size_t i = 0; i < dataWrapper.numBuffers; i++) {
-        Task::Buffer buffer;
-        buffer.size = i;
-        buffer.data = new uint8_t[buffer.size];
-
-        for(size_t j = 0; j < buffer.size; j++) {
-            buffer.data[j] = 'A' + j;
-        }
-        dataWrapper.buffers[i] = buffer;
-    }
-
-    Task::Data data;
-
-    dataWrapper.data = new Task::Data[dataWrapper.numData];
-    for(size_t i = 0; i < dataWrapper.numData; i++) {
-        data.value = i;
-        dataWrapper.data[i] = data;
-    }
-
-    const char* path = "test.bin";
-
-    // TODO: 2. Serialize data to file
-    Task::SerializeToFile(&dataWrapper, path);
-
-    // TODO: 3. Deserialize data from file
-    Task::DataWrapper unDataWrapper;
-    Task::DataWrapper* unDataWrapperPtr = &unDataWrapper;
-    Task::DeserializeFromFile(unDataWrapperPtr, "test.bin");
-
-    // TODO: 4. Verify deserialized data is correct
-    
-    if (Task::Verify(&dataWrapper, &unDataWrapper)) {
-        std::cout << "Serialization & deserialization was successful. " << std::endl;
-    } else {
-        std::cout << "There was an error with serialization & deserialization. " << std::endl;
-    }
-
-    Task::ReadWrapper(&dataWrapper, "test_1.txt");
-    Task::ReadWrapper(&unDataWrapper, "test_2.txt");
+    std::cout << "Test 1: " << (Task::Test1() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Test 2: " << (Task::Test2() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Test 3: " << (Task::Test3() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Test 4: " << (Task::Test4() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Test 5: " << (Task::Test5() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Test 6: " << (Task::Test6() ? "Passed" : "Failed") << std::endl;
 
     return 0;
 }
