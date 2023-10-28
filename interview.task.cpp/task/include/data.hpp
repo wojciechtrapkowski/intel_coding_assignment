@@ -17,6 +17,9 @@ namespace Task
 
     struct DataWrapper
     {
+        // Version of the DataWrapper to make sure (de)serialization is ready for future changes in data structure
+        size_t version = 1;
+
         Buffer* buffers    = nullptr;
         size_t  numBuffers = 0;
 

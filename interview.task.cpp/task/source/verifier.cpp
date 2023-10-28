@@ -9,6 +9,9 @@ namespace Task
     {
         if (wrapper == referenceWrapper)
             return true;
+        
+        if (wrapper->version != referenceWrapper->version) 
+            return false;
 
         if ((wrapper == nullptr && referenceWrapper != nullptr) || (wrapper != nullptr && referenceWrapper == nullptr))
             return false;
